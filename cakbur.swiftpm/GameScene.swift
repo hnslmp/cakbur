@@ -8,31 +8,61 @@
 import SwiftUI
 import SpriteKit
 
-enum Direction: String {
+enum Direction {
     case up
     case left
     case right
     case down
 }
 
+enum NodeType {
+    case attacker
+    case defender
+}
+
+struct PhysicsCategory {
+  static let none       : UInt32 = 0
+  static let all        : UInt32 = UInt32.max
+  static let attacker   : UInt32 = 0b1
+  static let defender   : UInt32 = 0b10
+}
+
 class GameScene: SKScene {
     
-    let attacker1 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker1: AttackerNode = {
+        let gameNode = AttackerNode(spawnPoint: CGPoint(x: 30, y: 90), nodeIndex: 1)
+        return gameNode
+    }()
+    
+    // TODO: Convert all into custom player node
     let attacker2 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
     let attacker3 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
     let attacker4 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
     let attacker5 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
     let attacker6 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+        
+    let defender1: DefenderNode = {
+        let gameNode = DefenderNode(spawnPoint: CGPoint(x: 0, y: 0))
+        return gameNode
+    }()
     
+    let defender2 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
+    let defender3 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
+    let defender4 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
+    let defender5 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
+
     var activeAttackerIndex = 1
 
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsWorld.gravity = .zero
+        physicsWorld.contactDelegate = self
         
         setupArena()
         setupAttacker()
+        setupDefender()
         setupButton()
         
     }
@@ -55,6 +85,37 @@ class GameScene: SKScene {
         
         attacker6.position = CGPoint(x: 180, y: 90)
         addChild(attacker6)
+    }
+    
+    private func setupDefender() {
+        let width = self.frame.width
+        let height = self.frame.height
+        
+        let horizontalPadding = CGFloat(30)
+        let verticalPadding = CGFloat(50)
+        let verticalHeight = CGFloat(270)
+        
+        let topLeft = CGPoint(x: horizontalPadding, y: height - verticalPadding)
+        let topRight = CGPoint(x: width - horizontalPadding, y: height - verticalPadding)
+        let topMiddle = CGPoint(x: width/2, y: height - verticalPadding)
+        
+        let bottomLeft = CGPoint(x: horizontalPadding, y: height - verticalHeight)
+        let bottomRight = CGPoint(x: width - horizontalPadding, y: height - verticalHeight)
+        let bottomMiddle = CGPoint(x: width/2, y: height - verticalHeight)
+        
+        let horizontalLength = abs(bottomLeft.y - topLeft.y)
+        
+        let topHalfLeft = CGPoint(x: topLeft.x, y: bottomLeft.y + horizontalLength/3)
+        let topHalfRight = CGPoint(x: topRight.x, y: bottomLeft.y + horizontalLength/3)
+        
+        let bottomHalfLeft = CGPoint(x: topLeft.x, y: bottomLeft.y + horizontalLength/3*2)
+        let bottomHalfRight = CGPoint(x: topRight.x, y: bottomLeft.y + horizontalLength/3*2)
+
+        // TODO: Spawn all defender
+        defender1.position = bottomMiddle
+        addChild(defender1)
+        
+        // TODO: Configure defender movement
     }
     
     private func setupArena() {
@@ -153,11 +214,6 @@ class GameScene: SKScene {
         path7.addLine(to: bottomHalfRight)
         line7.path = path7
         addChild(line7)
-        
-        let defender1 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
-        defender1.position = topMiddle
-        addChild(defender1)
-        
     }
     
     private func setupButton() {
@@ -259,5 +315,31 @@ class GameScene: SKScene {
             activeAttackerIndex += 1
         }
     }
+    
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+      var firstBody: SKPhysicsBody
+      var secondBody: SKPhysicsBody
+      if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+        firstBody = contact.bodyA
+        secondBody = contact.bodyB
+      } else {
+        firstBody = contact.bodyB
+        secondBody = contact.bodyA
+      }
+     
+
+      if ((firstBody.categoryBitMask & PhysicsCategory.attacker != 0) &&
+          (secondBody.categoryBitMask & PhysicsCategory.defender != 0)) {
+        if let attacker = firstBody.node as? AttackerNode,
+          let defender = secondBody.node as? DefenderNode {
+            // TODO: Reset attacker position
+        }
+      }
+    }
+
     
 }

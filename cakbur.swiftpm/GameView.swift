@@ -14,8 +14,8 @@ struct GameView: View {
         scene.size = CGSize(width: 300, height: 400)
         scene.scaleMode = .fill
         return scene
-        
     }
+    
     var body: some View {
         ZStack {
             SpriteView(scene: scene)
