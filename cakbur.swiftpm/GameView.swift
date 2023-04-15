@@ -2,20 +2,44 @@ import SwiftUI
 import SpriteKit
 
 enum Direction: String {
-    case up = "up"
-    case left = "left"
-    case right = "right"
-    case down = "down"
+    case up
+    case left
+    case right
+    case down
 }
 
 class GameScene: SKScene {
     
-    let player = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker1 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker2 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker3 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker4 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker5 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    let attacker6 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    
+    var activeAttackerIndex = 1
 
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black
-        player.position = CGPoint(x: self.frame.width / 2, y: 90)
-        addChild(player)
+        
+        attacker1.position = CGPoint(x: 30, y: 90)
+        addChild(attacker1)
+        
+        attacker2.position = CGPoint(x: 60, y: 90)
+        addChild(attacker2)
+        
+        attacker3.position = CGPoint(x: 90, y: 90)
+        addChild(attacker3)
+        
+        attacker4.position = CGPoint(x: 120, y: 90)
+        addChild(attacker4)
+        
+        attacker5.position = CGPoint(x: 150, y: 90)
+        addChild(attacker5)
+        
+        attacker6.position = CGPoint(x: 180, y: 90)
+        addChild(attacker6)
+        
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
         setupButton()
@@ -26,61 +50,98 @@ class GameScene: SKScene {
 
         let buttonUp = SgButton(normalImageNamed: "arrow-top.png", buttonFunc: tappedButton)
         buttonUp.position = CGPointMake(width/2, 60)
-        buttonUp.tag = Direction.up.rawValue
+        buttonUp.tag = "buttonUp"
         self.addChild(buttonUp)
         
         let buttonDown = SgButton(normalImageNamed: "arrow-bottom.png", buttonFunc: tappedButton)
         buttonDown.position = CGPointMake(width/2, 30)
-        buttonDown.tag = Direction.down.rawValue
+        buttonDown.tag = "buttonDown"
         self.addChild(buttonDown)
         
         let buttonLeft = SgButton(normalImageNamed: "arrow-left.png", buttonFunc: tappedButton)
         buttonLeft.position = CGPointMake((width/2) - 15, 45)
-        buttonLeft.tag = Direction.left.rawValue
+        buttonLeft.tag = "buttonLeft"
         self.addChild(buttonLeft)
         
         let buttonRight = SgButton(normalImageNamed: "arrow-right.png", buttonFunc: tappedButton)
         buttonRight.position = CGPointMake((width/2) + 15, 45)
-        buttonRight.tag = Direction.right.rawValue
+        buttonRight.tag = "buttonRight"
         self.addChild(buttonRight)
+        
+        let buttonSwitch = SgButton(normalImageNamed: "switch.png", buttonFunc: tappedButton)
+        buttonSwitch.position = CGPointMake((width/2) + 60, 45)
+        buttonSwitch.tag = "buttonSwitch"
+        self.addChild(buttonSwitch)
     }
         
-    private func move(_ direction: Direction){
+    private func move(attacker: SKSpriteNode, direction: Direction){
         
         let moveRange = CGFloat(25)
         let moveDuration = TimeInterval(0.5)
 
-        let position = player.position
+        let position = attacker.position
         
         switch direction {
             
         case .up:
             let action = SKAction.move(to: CGPoint(x: position.x, y: position.y + moveRange), duration: moveDuration)
-            player.run(action)
+            attacker.run(action)
         case .left:
             let action = SKAction.move(to: CGPoint(x: position.x - moveRange, y: position.y), duration: moveDuration)
-            player.run(action)
+            attacker.run(action)
         case .right:
             let action = SKAction.move(to: CGPoint(x: position.x + moveRange, y: position.y), duration: moveDuration)
-            player.run(action)
+            attacker.run(action)
         case .down:
             let action = SKAction.move(to: CGPoint(x: position.x, y: position.y - moveRange), duration: moveDuration)
-            player.run(action)
+            attacker.run(action)
         }
     }
     
     func tappedButton(button: SgButton) {
+        
+        guard let attacker = setSelectedAttacker() else { return }
+        
         switch button.tag {
-        case Direction.up.rawValue:
-            move(.up)
-        case Direction.down.rawValue:
-            move(.down)
-        case Direction.left.rawValue:
-            move(.left)
-        case Direction.right.rawValue:
-            move(.right)
+        case "buttonUp":
+            move(attacker: attacker, direction: .up)
+        case "buttonDown":
+            move(attacker: attacker, direction: .down)
+        case "buttonLeft":
+            move(attacker: attacker, direction: .left)
+        case "buttonRight":
+            move(attacker: attacker, direction: .right)
+        case "buttonSwitch":
+            toggleActiveAttackerIndex()
         default:
             break
+        }
+    }
+    
+    func setSelectedAttacker() -> SKSpriteNode? {
+        
+        if activeAttackerIndex == 1 {
+            return attacker1
+        } else if activeAttackerIndex == 2 {
+            return attacker2
+        } else if activeAttackerIndex == 3 {
+            return attacker3
+        } else if activeAttackerIndex == 4 {
+            return attacker4
+        } else if activeAttackerIndex == 5 {
+            return attacker5
+        } else if activeAttackerIndex == 6 {
+            return attacker6
+        }
+        
+        return nil
+    }
+    
+    func toggleActiveAttackerIndex(){
+        if activeAttackerIndex == 6 {
+            activeAttackerIndex = 1
+        } else {
+            activeAttackerIndex += 1
         }
     }
     
