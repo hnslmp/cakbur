@@ -1,3 +1,10 @@
+//
+//  SgButton.swift
+//  cakbur
+//
+//  Created by Hansel Matthew on 15/04/23.
+//
+
 import SpriteKit
 
 class SgButton: SKSpriteNode {
