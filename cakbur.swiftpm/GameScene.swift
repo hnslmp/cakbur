@@ -29,25 +29,21 @@ struct PhysicsCategory {
 
 class GameScene: SKScene {
     
-    let attacker1: AttackerNode = {
-        let gameNode = AttackerNode(spawnPoint: CGPoint(x: 30, y: 90), nodeIndex: 1)
-        return gameNode
-    }()
-    
-    // TODO: Convert all into custom player node
-    let attacker2 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
-    let attacker3 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
-    let attacker4 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
-    let attacker5 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
-    let attacker6 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
+    var activeAttackerIndex = 1
+    let horizontalPadding = CGFloat(30)
         
+    let attacker1 = AttackerNode(spawnPoint: CGPoint(x: 60, y: 90), nodeIndex: 1)
+    let attacker2 = AttackerNode(spawnPoint: CGPoint(x: 90, y: 90), nodeIndex: 1)
+    let attacker3 = AttackerNode(spawnPoint: CGPoint(x: 120, y: 90), nodeIndex: 1)
+    let attacker4 = AttackerNode(spawnPoint: CGPoint(x: 150, y: 90), nodeIndex: 1)
+    let attacker5 = AttackerNode(spawnPoint: CGPoint(x: 180, y: 90), nodeIndex: 1)
+    let attacker6 = AttackerNode(spawnPoint: CGPoint(x: 210, y: 90), nodeIndex: 1)
+    
     var defender1 = DefenderNode()
     var defender2 = DefenderNode()
     var defender3 = DefenderNode()
     var defender4 = DefenderNode()
     var defender5 = DefenderNode()
-
-    var activeAttackerIndex = 1
 
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black
@@ -63,38 +59,18 @@ class GameScene: SKScene {
     }
     
     private func setupAttacker() {
-        attacker1.position = CGPoint(x: 30, y: 90)
         addChild(attacker1)
-        
-        attacker2.position = CGPoint(x: 60, y: 90)
         addChild(attacker2)
-        
-        attacker3.position = CGPoint(x: 90, y: 90)
         addChild(attacker3)
-        
-        attacker4.position = CGPoint(x: 120, y: 90)
         addChild(attacker4)
-        
-        attacker5.position = CGPoint(x: 150, y: 90)
         addChild(attacker5)
-        
-        attacker6.position = CGPoint(x: 180, y: 90)
         addChild(attacker6)
-    }
-    
-    func random() -> CGFloat {
-      return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-    }
-    
-    func random(min: CGFloat, max: CGFloat) -> CGFloat {
-      return random() * (max - min) + min
     }
     
     private func setupDefender() {
         let width = self.frame.width
         let height = self.frame.height
         
-        let horizontalPadding = CGFloat(30)
         let verticalPadding = CGFloat(70)
         let verticalHeight = CGFloat(270)
         
@@ -134,6 +110,14 @@ class GameScene: SKScene {
         addChild(defender5)
         configureDefenderHorizontalMove(defender: defender5)
         
+    }
+    
+    private func random() -> CGFloat {
+      return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    
+    private func random(min: CGFloat, max: CGFloat) -> CGFloat {
+      return random() * (max - min) + min
     }
     
     private func configureDefenderVerticalMove(defender: DefenderNode) {
@@ -292,7 +276,7 @@ class GameScene: SKScene {
     }
         
     private func move(attacker: SKSpriteNode, direction: Direction){
-        
+        // TODO: add a limiter to the movement
         let moveRange = CGFloat(25)
         let moveDuration = TimeInterval(0.5)
 
@@ -382,7 +366,10 @@ extension GameScene: SKPhysicsContactDelegate {
           (secondBody.categoryBitMask & PhysicsCategory.defender != 0)) {
         if let attacker = firstBody.node as? AttackerNode,
           let defender = secondBody.node as? DefenderNode {
-            // TODO: Reset attacker position
+            attacker.removeAllActions()
+            attacker.removeFromParent()
+            attacker.position = attacker.spawnPoint
+            addChild(attacker)
         }
       }
     }
