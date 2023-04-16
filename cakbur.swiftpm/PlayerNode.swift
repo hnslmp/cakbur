@@ -35,13 +35,18 @@ class AttackerNode: SKSpriteNode {
 
 class DefenderNode: SKSpriteNode {
     
-    let spawnPoint: CGPoint
+    var spawnPoint: CGPoint
+    var startPoint: CGPoint
+    var endPoint: CGPoint
     
     // TODO: Create variables to store 2 movement point of node
     
-    init(spawnPoint: CGPoint) {
+    init(spawnPoint: CGPoint = CGPoint(x: 0, y: 0), startPoint: CGPoint = CGPoint(x: 0, y: 0), endPoint: CGPoint = CGPoint(x: 0, y: 0)) {
         self.spawnPoint = spawnPoint
+        self.startPoint = startPoint
+        self.endPoint = endPoint
         super.init(texture: nil, color: .red, size: CGSize(width: 16, height: 16))
+        self.position = spawnPoint
         setupNode()
     }
     

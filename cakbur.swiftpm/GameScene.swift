@@ -41,15 +41,11 @@ class GameScene: SKScene {
     let attacker5 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
     let attacker6 = SKSpriteNode(color: .white, size: CGSize(width: 16, height: 16))
         
-    let defender1: DefenderNode = {
-        let gameNode = DefenderNode(spawnPoint: CGPoint(x: 0, y: 0))
-        return gameNode
-    }()
-    
-    let defender2 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
-    let defender3 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
-    let defender4 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
-    let defender5 = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
+    var defender1 = DefenderNode()
+    var defender2 = DefenderNode()
+    var defender3 = DefenderNode()
+    var defender4 = DefenderNode()
+    var defender5 = DefenderNode()
 
     var activeAttackerIndex = 1
 
@@ -64,7 +60,6 @@ class GameScene: SKScene {
         setupAttacker()
         setupDefender()
         setupButton()
-        
     }
     
     private func setupAttacker() {
@@ -87,12 +82,20 @@ class GameScene: SKScene {
         addChild(attacker6)
     }
     
+    func random() -> CGFloat {
+      return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
+      return random() * (max - min) + min
+    }
+    
     private func setupDefender() {
         let width = self.frame.width
         let height = self.frame.height
         
         let horizontalPadding = CGFloat(30)
-        let verticalPadding = CGFloat(50)
+        let verticalPadding = CGFloat(70)
         let verticalHeight = CGFloat(270)
         
         let topLeft = CGPoint(x: horizontalPadding, y: height - verticalPadding)
@@ -110,12 +113,55 @@ class GameScene: SKScene {
         
         let bottomHalfLeft = CGPoint(x: topLeft.x, y: bottomLeft.y + horizontalLength/3*2)
         let bottomHalfRight = CGPoint(x: topRight.x, y: bottomLeft.y + horizontalLength/3*2)
-
-        // TODO: Spawn all defender
-        defender1.position = bottomMiddle
-        addChild(defender1)
         
-        // TODO: Configure defender movement
+        defender1 = DefenderNode(spawnPoint: bottomMiddle, startPoint: bottomMiddle, endPoint: topMiddle)
+        addChild(defender1)
+        configureDefenderVerticalMove(defender: defender1)
+        
+        defender2 = DefenderNode(spawnPoint: topLeft, startPoint: topLeft, endPoint: topRight)
+        addChild(defender2)
+        configureDefenderHorizontalMove(defender: defender2)
+        
+        defender3 = DefenderNode(spawnPoint: topHalfRight, startPoint: topHalfLeft, endPoint: topHalfRight)
+        addChild(defender3)
+        configureDefenderHorizontalMove(defender: defender3)
+        
+        defender4 = DefenderNode(spawnPoint: bottomHalfLeft, startPoint: bottomHalfLeft, endPoint: bottomHalfRight)
+        addChild(defender4)
+        configureDefenderHorizontalMove(defender: defender4)
+        
+        defender5 = DefenderNode(spawnPoint: bottomRight, startPoint: bottomLeft, endPoint: bottomRight)
+        addChild(defender5)
+        configureDefenderHorizontalMove(defender: defender5)
+        
+    }
+    
+    private func configureDefenderVerticalMove(defender: DefenderNode) {
+        run(SKAction.repeatForever(
+            SKAction.sequence([
+                SKAction.run { [self] in
+                    let targetPoint = random(min: defender.startPoint.y, max: defender.endPoint.y)
+                    let duration = random(min: 1, max: 3)
+                    let action = SKAction.move(to: CGPoint(x: defender.position.x, y: targetPoint), duration: duration)
+                    defender.run(action)
+                },
+                SKAction.wait(forDuration: 1.0)
+            ])
+        ))
+    }
+    
+    private func configureDefenderHorizontalMove(defender: DefenderNode) {
+        run(SKAction.repeatForever(
+            SKAction.sequence([
+                SKAction.run { [self] in
+                    let targetPoint = random(min: defender.startPoint.x, max: defender.endPoint.x)
+                    let duration = random(min: 1, max: 3)
+                    let action = SKAction.move(to: CGPoint(x: targetPoint, y: defender.position.y), duration: duration)
+                    defender.run(action)
+                },
+                SKAction.wait(forDuration: 1.0)
+            ])
+        ))
     }
     
     private func setupArena() {
@@ -126,7 +172,7 @@ class GameScene: SKScene {
         let height = self.frame.height
         
         let horizontalPadding = CGFloat(30)
-        let verticalPadding = CGFloat(50)
+        let verticalPadding = CGFloat(70)
         let verticalHeight = CGFloat(270)
         
         let topLeft = CGPoint(x: horizontalPadding, y: height - verticalPadding)
