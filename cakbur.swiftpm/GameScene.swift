@@ -15,26 +15,14 @@ enum Direction {
     case down
 }
 
-enum NodeType {
-    case attacker
-    case defender
-}
-
-struct PhysicsCategory {
-  static let none       : UInt32 = 0
-  static let all        : UInt32 = UInt32.max
-  static let attacker   : UInt32 = 0b1
-  static let defender   : UInt32 = 0b10
-}
-
 class GameScene: SKScene, ObservableObject {
     
     var activeAttackerIndex = 1
-    var score = 0
+    @Published var score = 0
     var successfulAttackerIndexs:[Int] = []
     let horizontalPadding = CGFloat(30)
         
-    lazy var attacker1 = AttackerNode(spawnPoint: CGPoint(x: frame.midX - 60, y: 90), nodeIndex: 1)
+    lazy var attacker1 = AttackerNode(spawnPoint: CGPoint(x: frame.midX - 60, y: 90), nodeIndex: 1, isActive: true)
     lazy var attacker2 = AttackerNode(spawnPoint: CGPoint(x: frame.midX - 30, y: 90), nodeIndex: 2)
     lazy var attacker3 = AttackerNode(spawnPoint: CGPoint(x: frame.midX, y: 90), nodeIndex: 3)
     lazy var attacker4 = AttackerNode(spawnPoint: CGPoint(x: frame.midX + 30, y: 90), nodeIndex: 4)
@@ -390,7 +378,7 @@ class GameScene: SKScene, ObservableObject {
             attacker.removeFromParent()
             score += 1
             updateScoreLabel()
-            
+            testBool = true
             toggleActiveAttackerIndex()
             successfulAttackerIndexs.append(attacker.nodeIndex)
         }
@@ -438,6 +426,16 @@ class GameScene: SKScene, ObservableObject {
             activeAttackerIndex = 1
         } else {
             activeAttackerIndex += 1
+        }
+        
+        let arrayAttackers = [attacker1, attacker2, attacker3, attacker4, attacker5]
+        
+        for (index, attacker) in arrayAttackers.enumerated() {
+            if index == activeAttackerIndex-1 {
+                attacker.isActive = true
+            } else {
+                attacker.isActive = false
+            }
         }
         
         if successfulAttackerIndexs.contains(activeAttackerIndex) {
