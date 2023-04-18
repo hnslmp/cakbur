@@ -17,21 +17,17 @@ class SgButton: SKSpriteNode {
     }
     
     class Record {
-        /* Input image */
         var imageFileName: String?
         var imageTexture: SKTexture?
         
-        /* text */
         var string: String?
         var fontName: String?
         var fontSize: CGFloat?
         var stringColor: UIColor?
-        
-        /* Background color */
+
         var backgroundColor: UIColor?
         var cornerRadius: CGFloat?
         
-        /* Size */
         var buttonSize: CGSize?
         
         var generatedImageTexture: SKTexture?
@@ -87,13 +83,7 @@ class SgButton: SKSpriteNode {
             let scene = SKScene(size: sz)
             view.backgroundColor = UIColor.clear
             
-            /*
-             * WARNING: Limited technique. When converting a texture into image, all transparent points will be lost
-             * My currrent solution: fill all transparent points by black ones, those black points will be converted
-             * back into transparent later. Thus texture for background button (only in case using with string) should 
-             * not have black points to avoid that limit
-             */
-            scene.backgroundColor = UIColor.black   // -> color will be converted into transparent
+            scene.backgroundColor = UIColor.black
             let sprite  = SKSpriteNode(texture: tex)
             sprite.position = CGPoint(x: CGRectGetMidX(view.frame), y: CGRectGetMidY(view.frame))
             
@@ -101,19 +91,13 @@ class SgButton: SKSpriteNode {
             view.presentScene(scene)
             view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
             
-            //Create the image from the context
             let image = UIGraphicsGetImageFromCurrentImageContext();
             
-            //Close the context
             UIGraphicsEndImageContext();
             
             return image
         }
         
-        /*
-         * WARNING: to avoid blending effect, we convert all black points with value from 0 to 50 into transprent
-         */
-        //RGB color range to mask (make transparent)  R-Low, R-High, G-Low, G-High, B-Low, B-High
         private let colorMasking:[CGFloat] = [0, 50, 0, 50, 0, 50]
 
         private func makeTransparent(image: UIImage?) -> UIImage? {
@@ -166,11 +150,6 @@ class SgButton: SKSpriteNode {
                 if string == nil {
                     generatedImageTexture = imageTexture
                 } else {
-                    /*
-                     * Due to the limit of current technique to convert a texture into image (cannot keep transparence)
-                     * we have to convert later all back points into transparent ones. Don not use black in the background
-                     * button images if you dont want them to be transparent in case of having string
-                     */
                     if let image = makeTransparent(image: getImage(tex: imageTexture!)) {
                         generatedImageTexture = generatedStringTexture(image: image, string: string!)
                     }
@@ -203,49 +182,26 @@ class SgButton: SKSpriteNode {
             let rect = sz==stringSz! ?  CGRectMake(0, 0, sz.width, sz.height) : CGRectMake((sz.width - stringSz!.width) * 0.5, (sz.height - stringSz!.height) * 0.5, stringSz!.width, stringSz!.height)
             (string as NSString).draw(in: rect, withAttributes: textAttributes)
             
-            //Create the image from the context
             let image = UIGraphicsGetImageFromCurrentImageContext();
             
-            //Close the context
             UIGraphicsEndImageContext();
             
             return SKTexture(image: image!)
         }
-    } // class Record
+    }
     
-    /*
-     * Assign to name for convernient debug / work
-     */
     let buttonName = "SgButton"
     
-    /*
-     * Convernient tag
-     */
     var tag: String = ""
     
-    
-    /*
-    * Function to be called after being tapped
-    */
     var buttonFunc: ((_ button: SgButton) -> Void)?
     
-    /*
-     * ButtonType
-     */
     var buttonType = ButtonType.normal
     
-    /*
-     * Sound
-     */
     var soundOn = true
     var clickSoundName: String? = nil
     var disableSoundName: String? = nil
-    
-
-    /*
-    * Internal data, should not be accessed from outside
-    */
-    
+        
     private var records = [ State : Record]()
     
     private var isDisabled: Bool = false
@@ -262,13 +218,7 @@ class SgButton: SKSpriteNode {
         let soundAct = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
         self.run(soundAct)
     }
-    
 
-    /*
-    * Init
-    */
-
-    // Button with images
     init(buttonType: ButtonType = .normal,
          normalImageNamed: String,
          highlightedImageNamed: String? = nil,
@@ -302,7 +252,6 @@ class SgButton: SKSpriteNode {
         completeInit()
     }
     
-    // Button with textures
     init(buttonType: ButtonType = .normal,
          normalTexture: SKTexture,
          highlightedTexture: SKTexture? = nil,
@@ -336,7 +285,6 @@ class SgButton: SKSpriteNode {
         completeInit()
     }
 
-    // Button with string
     init(buttonType: ButtonType = .normal,
          normalString: String,
          normalStringColor: UIColor = UIColor.white,
@@ -416,9 +364,6 @@ class SgButton: SKSpriteNode {
         completeInit()
     }
     
-    /*
-    * Methods
-    */
     var disabled: Bool {
         set {
             isDisabled = newValue
@@ -456,9 +401,6 @@ class SgButton: SKSpriteNode {
         }
         record?.string = string
         
-        /*
-         * copy data from normal state if current is nil
-         */
         record!.fontName = fontName != nil ? fontName : records[ .normal ]?.fontName
         record!.fontSize = fontSize != nil ? fontSize : records[ .normal ]?.fontSize
         record!.stringColor = stringColor != nil ? stringColor : records[ .normal ]?.stringColor
@@ -466,9 +408,6 @@ class SgButton: SKSpriteNode {
         record!.buttonSize = size != nil ? size : records[ .normal ]?.buttonSize
         record!.cornerRadius = cornerRadius != nil ? cornerRadius : records[ .normal ]?.cornerRadius
 
-        /*
-         * copy background from normal state if current one is not enough info
-         */
         if backgroundColor == nil && state != .normal && record!.imageFileName == nil && record!.imageTexture == nil {
             record!.imageFileName = records[ .normal ]?.imageFileName
             record!.imageTexture = records[ .normal ]?.imageTexture
@@ -476,7 +415,6 @@ class SgButton: SKSpriteNode {
 
         record!.generateTexture()
         
-        // update current texture
         if self.state == state {
             self.state = state
         }
@@ -493,7 +431,6 @@ class SgButton: SKSpriteNode {
 
         record!.generateTexture()
         
-        // update current texture
         self.state = state
     }
 
@@ -508,7 +445,6 @@ class SgButton: SKSpriteNode {
         
         record!.generateTexture()
         
-        // update current texture
         self.state = state
     }
     
@@ -517,9 +453,6 @@ class SgButton: SKSpriteNode {
         self.name = buttonName
     }
     
-    /*
-     * Needed to stop XCode warnings
-     */
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

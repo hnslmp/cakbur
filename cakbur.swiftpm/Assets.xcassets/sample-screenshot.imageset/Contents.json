@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Button.png",
+      "filename" : "Simulator Screenshot - iPad Pro (12.9-inch) (6th generation) - 2023-04-18 at 10.22.01.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Button@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Button@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

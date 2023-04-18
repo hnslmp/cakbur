@@ -8,20 +8,20 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "cakbur",
+    name: "Cakbur",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "cakbur",
+            name: "Cakbur",
             targets: ["AppModule"],
             bundleIdentifier: "hnslmp.cakbur",
             teamIdentifier: "2TB45ZQQMB",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .asset("AppIcon"),
-            accentColor: .presetColor(.indigo),
+            accentColor: .presetColor(.blue),
             supportedDeviceFamilies: [
                 .pad,
                 .phone

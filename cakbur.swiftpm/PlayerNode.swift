@@ -11,11 +11,11 @@ class AttackerNode: SKSpriteNode {
     
     let spawnPoint: CGPoint
     let nodeIndex: Int
-    
+        
     init(spawnPoint: CGPoint, nodeIndex: Int) {
         self.spawnPoint = spawnPoint
         self.nodeIndex = nodeIndex
-        super.init(texture: nil, color: .white, size: CGSize(width: 16, height: 16))
+        super.init(texture: SKTexture(imageNamed: "ic-attacker"), color: .white, size: CGSize(width: 16, height: 16))
         self.position = spawnPoint
         setupNode()
     }

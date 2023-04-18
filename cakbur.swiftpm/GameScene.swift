@@ -27,17 +27,18 @@ struct PhysicsCategory {
   static let defender   : UInt32 = 0b10
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, ObservableObject {
     
-    var activeAttackerIndex = 1
+    @Published var activeAttackerIndex = 1
+    var successfulAttackerIndexs:[Int] = []
     let horizontalPadding = CGFloat(30)
         
     let attacker1 = AttackerNode(spawnPoint: CGPoint(x: 60, y: 90), nodeIndex: 1)
-    let attacker2 = AttackerNode(spawnPoint: CGPoint(x: 90, y: 90), nodeIndex: 1)
-    let attacker3 = AttackerNode(spawnPoint: CGPoint(x: 120, y: 90), nodeIndex: 1)
-    let attacker4 = AttackerNode(spawnPoint: CGPoint(x: 150, y: 90), nodeIndex: 1)
-    let attacker5 = AttackerNode(spawnPoint: CGPoint(x: 180, y: 90), nodeIndex: 1)
-    let attacker6 = AttackerNode(spawnPoint: CGPoint(x: 210, y: 90), nodeIndex: 1)
+    let attacker2 = AttackerNode(spawnPoint: CGPoint(x: 90, y: 90), nodeIndex: 2)
+    let attacker3 = AttackerNode(spawnPoint: CGPoint(x: 120, y: 90), nodeIndex: 3)
+    let attacker4 = AttackerNode(spawnPoint: CGPoint(x: 150, y: 90), nodeIndex: 4)
+    let attacker5 = AttackerNode(spawnPoint: CGPoint(x: 180, y: 90), nodeIndex: 5)
+    let attacker6 = AttackerNode(spawnPoint: CGPoint(x: 210, y: 90), nodeIndex: 6)
     
     var defender1 = DefenderNode()
     var defender2 = DefenderNode()
@@ -46,11 +47,14 @@ class GameScene: SKScene {
     var defender5 = DefenderNode()
 
     override func didMove(to view: SKView) {
-        backgroundColor = SKColor.black
+        backgroundColor = .cakburBlack
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
+        
+        scaleMode = .fill
+        size = CGSize(width: 300, height: 400)
         
         setupArena()
         setupAttacker()
@@ -149,8 +153,18 @@ class GameScene: SKScene {
     }
     
     private func setupArena() {
+        
+        let finishLabel = SKLabelNode(fontNamed: "PressStart2P")
+        finishLabel.text = "Finish"
+        finishLabel.fontSize = 65
+        finishLabel.fontColor = SKColor.green
+        finishLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+           
+        addChild(finishLabel)
+
+        
         let lineWidth = 1.5
-        let lineColor = SKColor.white
+        let lineColor = UIColor.cakburBlue
         
         let width = self.frame.width
         let height = self.frame.height
@@ -248,35 +262,39 @@ class GameScene: SKScene {
     
     private func setupButton() {
         let width: CGFloat = self.frame.width
+        let buttonSize = CGSize(width: 24, height: 24)
 
         let buttonUp = SgButton(normalImageNamed: "arrow-top.png", buttonFunc: tappedButton)
-        buttonUp.position = CGPointMake(width/2, 60)
+        buttonUp.size = buttonSize
+        buttonUp.position = CGPointMake(width/2 - 50, 60)
         buttonUp.tag = "buttonUp"
         self.addChild(buttonUp)
         
         let buttonDown = SgButton(normalImageNamed: "arrow-bottom.png", buttonFunc: tappedButton)
-        buttonDown.position = CGPointMake(width/2, 30)
+        buttonDown.size = buttonSize
+        buttonDown.position = CGPointMake(width/2 - 50, 30)
         buttonDown.tag = "buttonDown"
         self.addChild(buttonDown)
         
         let buttonLeft = SgButton(normalImageNamed: "arrow-left.png", buttonFunc: tappedButton)
-        buttonLeft.position = CGPointMake((width/2) - 15, 45)
+        buttonLeft.size = buttonSize
+        buttonLeft.position = CGPointMake((width/2 - 50) - 24, 45)
         buttonLeft.tag = "buttonLeft"
         self.addChild(buttonLeft)
         
         let buttonRight = SgButton(normalImageNamed: "arrow-right.png", buttonFunc: tappedButton)
-        buttonRight.position = CGPointMake((width/2) + 15, 45)
+        buttonRight.size = buttonSize
+        buttonRight.position = CGPointMake((width/2 - 50) + 24, 45)
         buttonRight.tag = "buttonRight"
         self.addChild(buttonRight)
         
         let buttonSwitch = SgButton(normalImageNamed: "switch.png", buttonFunc: tappedButton)
-        buttonSwitch.position = CGPointMake((width/2) + 60, 45)
+        buttonSwitch.position = CGPointMake((width/2 - 50) + 60, 45)
         buttonSwitch.tag = "buttonSwitch"
         self.addChild(buttonSwitch)
     }
         
-    private func move(attacker: SKSpriteNode, direction: Direction){
-        // TODO: add a limiter to the movement
+    private func move(attacker: AttackerNode, direction: Direction){
         let moveRange = CGFloat(25)
         let moveDuration = TimeInterval(0.5)
 
@@ -288,14 +306,32 @@ class GameScene: SKScene {
             let action = SKAction.move(to: CGPoint(x: position.x, y: position.y + moveRange), duration: moveDuration)
             attacker.run(action)
         case .left:
-            let action = SKAction.move(to: CGPoint(x: position.x - moveRange, y: position.y), duration: moveDuration)
+            let targetPoint = position.x - moveRange
+            guard targetPoint > horizontalPadding else { break }
+            
+            let action = SKAction.move(to: CGPoint(x: targetPoint, y: position.y), duration: moveDuration)
             attacker.run(action)
         case .right:
+            let targetPoint = position.x - moveRange
+            let width: CGFloat = self.frame.width
+            guard targetPoint < width - horizontalPadding else { break }
+            
             let action = SKAction.move(to: CGPoint(x: position.x + moveRange, y: position.y), duration: moveDuration)
             attacker.run(action)
         case .down:
-            let action = SKAction.move(to: CGPoint(x: position.x, y: position.y - moveRange), duration: moveDuration)
+            let targetPoint = position.y - moveRange
+            guard targetPoint > 90 else { break }
+            
+            let action = SKAction.move(to: CGPoint(x: position.x, y: targetPoint), duration: moveDuration)
             attacker.run(action)
+        }
+        
+        if attacker.position.y > 350 {
+            attacker.removeAllActions()
+            attacker.removeFromParent()
+            
+            toggleActiveAttackerIndex()
+            successfulAttackerIndexs.append(attacker.nodeIndex)
         }
     }
     
@@ -319,7 +355,7 @@ class GameScene: SKScene {
         }
     }
     
-    private func setSelectedAttacker() -> SKSpriteNode? {
+    private func setSelectedAttacker() -> AttackerNode? {
         
         if activeAttackerIndex == 1 {
             return attacker1
@@ -343,6 +379,10 @@ class GameScene: SKScene {
             activeAttackerIndex = 1
         } else {
             activeAttackerIndex += 1
+        }
+        
+        if successfulAttackerIndexs.contains(activeAttackerIndex) {
+            toggleActiveAttackerIndex()
         }
     }
     
@@ -373,6 +413,4 @@ extension GameScene: SKPhysicsContactDelegate {
         }
       }
     }
-
-    
 }
