@@ -13,7 +13,6 @@ struct MyApp: App {
         
     init() {
         CustomFont.registerFonts()
-        
     }
     
     var body: some Scene {

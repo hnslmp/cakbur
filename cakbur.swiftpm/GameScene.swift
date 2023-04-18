@@ -18,7 +18,13 @@ enum Direction {
 class GameScene: SKScene, ObservableObject {
     
     var activeAttackerIndex = 1
-    @Published var score = 0
+    @Published var score = 0 {
+        didSet {
+            if score == 0 {
+               resetGame()
+            }
+        }
+    }
     var successfulAttackerIndexs:[Int] = []
     let horizontalPadding = CGFloat(30)
         
@@ -85,6 +91,8 @@ class GameScene: SKScene, ObservableObject {
         
         scaleMode = .fill
         size = CGSize(width: 300, height: 400)
+        
+        self.removeAllChildren()
         
         setupView()
         setupArena()
@@ -336,6 +344,14 @@ class GameScene: SKScene, ObservableObject {
         self.addChild(buttonRight)
         
         let buttonSwitch = SgButton(normalImageNamed: "switch.png", buttonFunc: tappedButton)
+        buttonSwitch.size = CGSize(width: 30, height: 30)
+        
+        let switchLabel = SKLabelNode(fontNamed: "PressStart2P")
+        switchLabel.text = "Switch Attacker"
+        switchLabel.fontSize = 4
+        switchLabel.position.y -= 24
+        buttonSwitch.addChild(switchLabel)
+        
         buttonSwitch.position = CGPointMake((width/2 + 50), 45)
         buttonSwitch.tag = "buttonSwitch"
         self.addChild(buttonSwitch)
@@ -378,7 +394,6 @@ class GameScene: SKScene, ObservableObject {
             attacker.removeFromParent()
             score += 1
             updateScoreLabel()
-            testBool = true
             toggleActiveAttackerIndex()
             successfulAttackerIndexs.append(attacker.nodeIndex)
         }
@@ -428,8 +443,15 @@ class GameScene: SKScene, ObservableObject {
             activeAttackerIndex += 1
         }
         
-        let arrayAttackers = [attacker1, attacker2, attacker3, attacker4, attacker5]
+        updateAttackerIndicator()
         
+        if successfulAttackerIndexs.contains(activeAttackerIndex) {
+            toggleActiveAttackerIndex()
+        }
+    }
+    
+    private func updateAttackerIndicator() {
+        let arrayAttackers = [attacker1, attacker2, attacker3, attacker4, attacker5]
         for (index, attacker) in arrayAttackers.enumerated() {
             if index == activeAttackerIndex-1 {
                 attacker.isActive = true
@@ -437,10 +459,12 @@ class GameScene: SKScene, ObservableObject {
                 attacker.isActive = false
             }
         }
-        
-        if successfulAttackerIndexs.contains(activeAttackerIndex) {
-            toggleActiveAttackerIndex()
-        }
+    }
+    
+    private func resetGame() {
+        successfulAttackerIndexs.removeAll()
+        activeAttackerIndex = 1
+        updateAttackerIndicator()
     }
     
 }
