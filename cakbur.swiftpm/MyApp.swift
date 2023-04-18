@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct MyApp: App {
+    init() {
+            CustomFont.registerFonts()
+        }
+    
     var body: some Scene {
         WindowGroup {
             GameView()

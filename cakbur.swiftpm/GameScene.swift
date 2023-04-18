@@ -29,22 +29,56 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, ObservableObject {
     
-    @Published var activeAttackerIndex = 1
+    var activeAttackerIndex = 1
+    var score = 0
     var successfulAttackerIndexs:[Int] = []
     let horizontalPadding = CGFloat(30)
         
-    let attacker1 = AttackerNode(spawnPoint: CGPoint(x: 60, y: 90), nodeIndex: 1)
-    let attacker2 = AttackerNode(spawnPoint: CGPoint(x: 90, y: 90), nodeIndex: 2)
-    let attacker3 = AttackerNode(spawnPoint: CGPoint(x: 120, y: 90), nodeIndex: 3)
-    let attacker4 = AttackerNode(spawnPoint: CGPoint(x: 150, y: 90), nodeIndex: 4)
-    let attacker5 = AttackerNode(spawnPoint: CGPoint(x: 180, y: 90), nodeIndex: 5)
-    let attacker6 = AttackerNode(spawnPoint: CGPoint(x: 210, y: 90), nodeIndex: 6)
-    
+    lazy var attacker1 = AttackerNode(spawnPoint: CGPoint(x: frame.midX - 60, y: 90), nodeIndex: 1)
+    lazy var attacker2 = AttackerNode(spawnPoint: CGPoint(x: frame.midX - 30, y: 90), nodeIndex: 2)
+    lazy var attacker3 = AttackerNode(spawnPoint: CGPoint(x: frame.midX, y: 90), nodeIndex: 3)
+    lazy var attacker4 = AttackerNode(spawnPoint: CGPoint(x: frame.midX + 30, y: 90), nodeIndex: 4)
+    lazy var attacker5 = AttackerNode(spawnPoint: CGPoint(x: frame.midX + 60, y: 90), nodeIndex: 5)
+       
     var defender1 = DefenderNode()
     var defender2 = DefenderNode()
     var defender3 = DefenderNode()
     var defender4 = DefenderNode()
     var defender5 = DefenderNode()
+    
+    lazy var scoreNode: SKSpriteNode = {
+        let node = SKSpriteNode(imageNamed: "score-background")
+        node.size = CGSize(width: 60, height: 30)
+        node.position = CGPoint(x: frame.width - 45, y: frame.height - 45 + 8)
+        return node
+    }()
+
+    lazy var scoreLabel: SKLabelNode = {
+        let label = SKLabelNode(fontNamed: "PressStart2P")
+        label.text = "0/6"
+        label.fontSize = 12
+        label.color = .white
+        label.position = CGPoint(x: frame.width - 45, y: frame.height - 45)
+        return label
+    }()
+    
+    lazy var finishLabel: SKLabelNode = {
+        let label = SKLabelNode(fontNamed: "PressStart2P")
+        label.text = "Finish"
+        label.fontSize = 12
+        label.fontColor = .cakburDarkYellow
+        label.position = CGPoint(x: frame.midX, y: frame.height - 45)
+        return label
+    }()
+    
+    lazy var titleLabel: SKLabelNode = {
+        let label = SKLabelNode(fontNamed: "PressStart2P")
+        label.text = "Cakbur"
+        label.fontSize = 10
+        label.fontColor = .white
+        label.position = CGPoint(x: horizontalPadding + label.frame.size.width/3, y: frame.height - 45)
+        return label
+    }()
 
     override func didMove(to view: SKView) {
         backgroundColor = .cakburBlack
@@ -56,10 +90,17 @@ class GameScene: SKScene, ObservableObject {
         scaleMode = .fill
         size = CGSize(width: 300, height: 400)
         
+        setupView()
         setupArena()
         setupAttacker()
         setupDefender()
         setupButton()
+        
+        updateScoreLabel()
+    }
+    
+    private func updateScoreLabel() {
+        scoreLabel.text = "\(self.score)/5"
     }
     
     private func setupAttacker() {
@@ -68,7 +109,6 @@ class GameScene: SKScene, ObservableObject {
         addChild(attacker3)
         addChild(attacker4)
         addChild(attacker5)
-        addChild(attacker6)
     }
     
     private func setupDefender() {
@@ -152,17 +192,15 @@ class GameScene: SKScene, ObservableObject {
         ))
     }
     
-    private func setupArena() {
-        
-        let finishLabel = SKLabelNode(fontNamed: "PressStart2P")
-        finishLabel.text = "Finish"
-        finishLabel.fontSize = 65
-        finishLabel.fontColor = SKColor.green
-        finishLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-           
+    private func setupView() {
+        addChild(titleLabel)
         addChild(finishLabel)
+        addChild(scoreNode)
+        addChild(scoreLabel)
+    }
+    
+    private func setupArena() {
 
-        
         let lineWidth = 1.5
         let lineColor = UIColor.cakburBlue
         
@@ -188,6 +226,19 @@ class GameScene: SKScene, ObservableObject {
         
         let bottomHalfLeft = CGPoint(x: topLeft.x, y: bottomLeft.y + horizontalLength/3*2)
         let bottomHalfRight = CGPoint(x: topRight.x, y: bottomLeft.y + horizontalLength/3*2)
+        
+        let attackerField = SKShapeNode(rectOf: CGSize(width: topLeft.x - topRight.x, height: attacker3.frame.width*3))
+        attackerField.fillColor = .cakburBackgroundBlue
+        attackerField.strokeColor = .clear
+        attackerField.position = CGPoint(x: width/2, y: attacker3.position.y + 10)
+        
+        let attackerFieldText = SKLabelNode(fontNamed: "PressStart2P")
+        attackerFieldText.text = "Cross the field without hitting the enemy"
+        attackerFieldText.fontSize = 4
+        attackerFieldText.position.y += 10
+        attackerField.addChild(attackerFieldText)
+
+        addChild(attackerField)
         
         let line1 = SKShapeNode()
         let path1 = CGMutablePath()
@@ -326,9 +377,11 @@ class GameScene: SKScene, ObservableObject {
             attacker.run(action)
         }
         
-        if attacker.position.y > 350 {
+        if attacker.position.y > 340 {
             attacker.removeAllActions()
             attacker.removeFromParent()
+            score += 1
+            updateScoreLabel()
             
             toggleActiveAttackerIndex()
             successfulAttackerIndexs.append(attacker.nodeIndex)
@@ -367,15 +420,13 @@ class GameScene: SKScene, ObservableObject {
             return attacker4
         } else if activeAttackerIndex == 5 {
             return attacker5
-        } else if activeAttackerIndex == 6 {
-            return attacker6
         }
         
         return nil
     }
     
     private func toggleActiveAttackerIndex(){
-        if activeAttackerIndex == 6 {
+        if activeAttackerIndex == 5 {
             activeAttackerIndex = 1
         } else {
             activeAttackerIndex += 1

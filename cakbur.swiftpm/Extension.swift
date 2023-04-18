@@ -34,6 +34,7 @@ extension UIColor {
     static let cakburDarkBlue = UIColor(rgb: 0x0D0026)
     static let cakburYellow = UIColor(rgb: 0xF4CE4A)
     static let cakburDarkYellow = UIColor(rgb: 0x3F3717)
+    static let cakburBackgroundBlue = UIColor(rgb: 0x050A1B)
     
 }
 

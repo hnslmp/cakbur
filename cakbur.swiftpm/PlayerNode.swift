@@ -12,7 +12,7 @@ class AttackerNode: SKSpriteNode {
     let spawnPoint: CGPoint
     let nodeIndex: Int
         
-    init(spawnPoint: CGPoint, nodeIndex: Int) {
+    init(spawnPoint: CGPoint = CGPoint(x: 0, y: 0), nodeIndex: Int) {
         self.spawnPoint = spawnPoint
         self.nodeIndex = nodeIndex
         super.init(texture: SKTexture(imageNamed: "ic-attacker"), color: .white, size: CGSize(width: 16, height: 16))
@@ -46,7 +46,7 @@ class DefenderNode: SKSpriteNode {
         self.spawnPoint = spawnPoint
         self.startPoint = startPoint
         self.endPoint = endPoint
-        super.init(texture: nil, color: .red, size: CGSize(width: 16, height: 16))
+        super.init(texture: SKTexture(imageNamed: "ic-defender"), color: .red, size: CGSize(width: 16, height: 16))
         self.position = spawnPoint
         setupNode()
     }
