@@ -392,6 +392,7 @@ class GameScene: SKScene, ObservableObject {
         if attacker.position.y > 340 {
             attacker.removeAllActions()
             attacker.removeFromParent()
+            attacker.position = attacker.spawnPoint
             score += 1
             updateScoreLabel()
             toggleActiveAttackerIndex()

@@ -32,8 +32,6 @@ struct WinnerView: View {
             Button {
                 withAnimation {
                     score = 0
-//                    scene.score = 0
-//                    shouldShowOnboarding = false
                 }
             } label: {
                 ZStack {
