@@ -40,8 +40,6 @@ class DefenderNode: SKSpriteNode {
     var startPoint: CGPoint
     var endPoint: CGPoint
     
-    // TODO: Create variables to store 2 movement point of node
-    
     init(spawnPoint: CGPoint = CGPoint(x: 0, y: 0), startPoint: CGPoint = CGPoint(x: 0, y: 0), endPoint: CGPoint = CGPoint(x: 0, y: 0)) {
         self.spawnPoint = spawnPoint
         self.startPoint = startPoint
@@ -60,7 +58,6 @@ class DefenderNode: SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = true
 
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

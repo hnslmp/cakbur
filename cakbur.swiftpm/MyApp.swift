@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import AVKit
 
 @main
 struct MyApp: App {
+        
     init() {
-            CustomFont.registerFonts()
-        }
+        CustomFont.registerFonts()
+        
+    }
     
     var body: some Scene {
         WindowGroup {
             GameView()
-//            OnboardingView()
+                .background(Color.cakburBlack)
         }
     }
 }

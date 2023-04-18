@@ -10,14 +10,18 @@ import SpriteKit
 
 struct GameView: View {
     
-    @StateObject var scene = GameScene()
+//    @AppStorage("shouldShowOnboarding") var shouldShowOnboarding = true
+    @State var shouldShowOnboarding = true
+    
+    var scene = GameScene()
     
     var body: some View {
-        ZStack {
+        if !shouldShowOnboarding {
             SpriteView(scene: scene)
                 .edgesIgnoringSafeArea(.all)
-            
-            Text("\(scene.activeAttackerIndex)")
+                .transition(.opacity)
+        } else {
+            OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
         }
     }
 }

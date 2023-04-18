@@ -325,13 +325,13 @@ class GameScene: SKScene, ObservableObject {
 
         let buttonUp = SgButton(normalImageNamed: "arrow-top.png", buttonFunc: tappedButton)
         buttonUp.size = buttonSize
-        buttonUp.position = CGPointMake(width/2 - 50, 60)
+        buttonUp.position = CGPointMake((width/2 - 50), 60)
         buttonUp.tag = "buttonUp"
         self.addChild(buttonUp)
         
         let buttonDown = SgButton(normalImageNamed: "arrow-bottom.png", buttonFunc: tappedButton)
         buttonDown.size = buttonSize
-        buttonDown.position = CGPointMake(width/2 - 50, 30)
+        buttonDown.position = CGPointMake((width/2 - 50), 30)
         buttonDown.tag = "buttonDown"
         self.addChild(buttonDown)
         
@@ -348,7 +348,7 @@ class GameScene: SKScene, ObservableObject {
         self.addChild(buttonRight)
         
         let buttonSwitch = SgButton(normalImageNamed: "switch.png", buttonFunc: tappedButton)
-        buttonSwitch.position = CGPointMake((width/2 - 50) + 60, 45)
+        buttonSwitch.position = CGPointMake((width/2 + 50), 45)
         buttonSwitch.tag = "buttonSwitch"
         self.addChild(buttonSwitch)
     }
