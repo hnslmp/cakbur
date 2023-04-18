@@ -50,6 +50,14 @@ class GameScene: SKScene, ObservableObject {
         let node = SKSpriteNode(imageNamed: "score-background")
         node.size = CGSize(width: 60, height: 30)
         node.position = CGPoint(x: frame.width - 45, y: frame.height - 45 + 8)
+        
+        let label = SKLabelNode(fontNamed: "PressStart2P")
+        label.text = "Your Score"
+        label.fontSize = 4
+        label.color = .white
+        label.position.y += node.frame.height/2
+        node.addChild(label)
+        
         return node
     }()
 
@@ -365,7 +373,7 @@ class GameScene: SKScene, ObservableObject {
         case .right:
             let targetPoint = position.x - moveRange
             let width: CGFloat = self.frame.width
-            guard targetPoint < width - horizontalPadding else { break }
+            guard targetPoint < width - horizontalPadding*2 - 15 else { break }
             
             let action = SKAction.move(to: CGPoint(x: position.x + moveRange, y: position.y), duration: moveDuration)
             attacker.run(action)
