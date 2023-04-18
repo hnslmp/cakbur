@@ -15,24 +15,24 @@ struct OnboardingView: View {
         TabView {
             PageView(title: "Welcome to\nCakbur the iPad Game",
                      subtitle: "Cakbur is a traditional game in Indonesia. This game is known by various names such as Gobak Sodor, Galah Asin, Galasin, or Gobag.",
-                     imageName: "sample-screenshot",
+                     imageName: "onboarding-1",
                      showSwipeIndicator: true,
                      shouldShowOnboarding: $shouldShowOnboarding
             )
             
             PageView(title: "How to play",
                      subtitle: "This game is played by 2 teams, the attacking team and the defending team. Each team can have 3 to 5 members. The playing area is a rectangular shape divided into 6 squares.",
-                     imageName: "sample-screenshot",
+                     imageName: "onboarding-2",
                      shouldShowOnboarding: $shouldShowOnboarding)
             
             PageView(title: "The Defending Team",
                      subtitle: "The defending team is in charge of guarding the line and blocking the attacking team from reaching the finish area. Defenders can only move within the line of the track they are guarding and may not cross or exit the line.",
-                     imageName: "sample-screenshot",
+                     imageName: "onboarding-3",
                      shouldShowOnboarding: $shouldShowOnboarding)
             
             PageView(title: "The Attacking Team",
                      subtitle: "The attacking team's job is to make all members of the attacking team reach the finish line without being hit by any of the defender team member. In this game, you will be the attack team.",
-                     imageName: "sample-screenshot",
+                     imageName: "onboarding-4",
                      showDismissButton: true,
                      shouldShowOnboarding: $shouldShowOnboarding)
             

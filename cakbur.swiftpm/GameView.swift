@@ -10,8 +10,7 @@ import SpriteKit
 
 struct GameView: View {
     
-    //    @AppStorage("shouldShowOnboarding") var shouldShowOnboarding = true
-    @State var shouldShowOnboarding = false
+    @AppStorage("shouldShowOnboarding") var shouldShowOnboarding = true
     
     @StateObject var scene: GameScene = {
         let scene = GameScene()
