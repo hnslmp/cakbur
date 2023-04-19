@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B55FD91229EF86C50084A457 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B55FD91129EF86C50084A457 /* Assets.xcassets */; };
+		B55FD91529EF86C50084A457 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B55FD91429EF86C50084A457 /* Preview Assets.xcassets */; };
+		B55FD92429EF86E70084A457 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD91B29EF86E70084A457 /* OnboardingView.swift */; };
+		B55FD92529EF86E70084A457 /* SgButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD91C29EF86E70084A457 /* SgButton.swift */; };
+		B55FD92629EF86E70084A457 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD91D29EF86E70084A457 /* GameScene.swift */; };
+		B55FD92729EF86E70084A457 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD91E29EF86E70084A457 /* Extension.swift */; };
+		B55FD92829EF86E70084A457 /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD91F29EF86E70084A457 /* WinnerView.swift */; };
+		B55FD92929EF86E70084A457 /* PlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD92029EF86E70084A457 /* PlayerNode.swift */; };
+		B55FD92A29EF86E70084A457 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD92129EF86E70084A457 /* CustomFont.swift */; };
+		B55FD92B29EF86E70084A457 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD92229EF86E70084A457 /* GameView.swift */; };
+		B55FD92C29EF86E70084A457 /* MyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD92329EF86E70084A457 /* MyApp.swift */; };
+		B55FD92F29EF87160084A457 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B55FD92E29EF87160084A457 /* PressStart2P.ttf */; };
+		B55FD93429EF87AC0084A457 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B55FD93329EF87AC0084A457 /* backgroundMusic.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B55FD90A29EF86C40084A457 /* cakbur-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cakbur-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B55FD91129EF86C50084A457 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B55FD91429EF86C50084A457 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B55FD91B29EF86E70084A457 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B55FD91C29EF86E70084A457 /* SgButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SgButton.swift; sourceTree = "<group>"; };
+		B55FD91D29EF86E70084A457 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		B55FD91E29EF86E70084A457 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		B55FD91F29EF86E70084A457 /* WinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
+		B55FD92029EF86E70084A457 /* PlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNode.swift; sourceTree = "<group>"; };
+		B55FD92129EF86E70084A457 /* CustomFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		B55FD92229EF86E70084A457 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		B55FD92329EF86E70084A457 /* MyApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyApp.swift; path = ../../cakbur.swiftpm/MyApp.swift; sourceTree = "<group>"; };
+		B55FD92E29EF87160084A457 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
+		B55FD93329EF87AC0084A457 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B55FD90729EF86C40084A457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B55FD90129EF86C30084A457 = {
+			isa = PBXGroup;
+			children = (
+				B55FD90C29EF86C40084A457 /* cakbur-ios */,
+				B55FD90B29EF86C40084A457 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B55FD90B29EF86C40084A457 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD90A29EF86C40084A457 /* cakbur-ios.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B55FD90C29EF86C40084A457 /* cakbur-ios */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD93029EF87570084A457 /* Common */,
+				B55FD93129EF87800084A457 /* Game */,
+				B55FD93229EF87970084A457 /* Views */,
+				B55FD92329EF86E70084A457 /* MyApp.swift */,
+				B55FD91129EF86C50084A457 /* Assets.xcassets */,
+				B55FD92D29EF87160084A457 /* Resources */,
+				B55FD91329EF86C50084A457 /* Preview Content */,
+			);
+			path = "cakbur-ios";
+			sourceTree = "<group>";
+		};
+		B55FD91329EF86C50084A457 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD91429EF86C50084A457 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B55FD92D29EF87160084A457 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD92E29EF87160084A457 /* PressStart2P.ttf */,
+				B55FD93329EF87AC0084A457 /* backgroundMusic.mp3 */,
+			);
+			name = Resources;
+			path = ../../cakbur.swiftpm/Resources;
+			sourceTree = "<group>";
+		};
+		B55FD93029EF87570084A457 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD92129EF86E70084A457 /* CustomFont.swift */,
+				B55FD91E29EF86E70084A457 /* Extension.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B55FD93129EF87800084A457 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD91D29EF86E70084A457 /* GameScene.swift */,
+				B55FD92029EF86E70084A457 /* PlayerNode.swift */,
+				B55FD91C29EF86E70084A457 /* SgButton.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		B55FD93229EF87970084A457 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B55FD92229EF86E70084A457 /* GameView.swift */,
+				B55FD91B29EF86E70084A457 /* OnboardingView.swift */,
+				B55FD91F29EF86E70084A457 /* WinnerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B55FD90929EF86C40084A457 /* cakbur-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B55FD91829EF86C50084A457 /* Build configuration list for PBXNativeTarget "cakbur-ios" */;
+			buildPhases = (
+				B55FD90629EF86C40084A457 /* Sources */,
+				B55FD90729EF86C40084A457 /* Frameworks */,
+				B55FD90829EF86C40084A457 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "cakbur-ios";
+			productName = "cakbur-ios";
+			productReference = B55FD90A29EF86C40084A457 /* cakbur-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B55FD90229EF86C30084A457 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B55FD90929EF86C40084A457 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = B55FD90529EF86C30084A457 /* Build configuration list for PBXProject "cakbur-ios" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B55FD90129EF86C30084A457;
+			productRefGroup = B55FD90B29EF86C40084A457 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B55FD90929EF86C40084A457 /* cakbur-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B55FD90829EF86C40084A457 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B55FD92F29EF87160084A457 /* PressStart2P.ttf in Resources */,
+				B55FD91529EF86C50084A457 /* Preview Assets.xcassets in Resources */,
+				B55FD93429EF87AC0084A457 /* backgroundMusic.mp3 in Resources */,
+				B55FD91229EF86C50084A457 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B55FD90629EF86C40084A457 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B55FD92A29EF86E70084A457 /* CustomFont.swift in Sources */,
+				B55FD92629EF86E70084A457 /* GameScene.swift in Sources */,
+				B55FD92829EF86E70084A457 /* WinnerView.swift in Sources */,
+				B55FD92429EF86E70084A457 /* OnboardingView.swift in Sources */,
+				B55FD92B29EF86E70084A457 /* GameView.swift in Sources */,
+				B55FD92729EF86E70084A457 /* Extension.swift in Sources */,
+				B55FD92C29EF86E70084A457 /* MyApp.swift in Sources */,
+				B55FD92929EF86E70084A457 /* PlayerNode.swift in Sources */,
+				B55FD92529EF86E70084A457 /* SgButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B55FD91629EF86C50084A457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B55FD91729EF86C50084A457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B55FD91929EF86C50084A457 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cakbur-ios/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Cakbur;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hnslmp.cakbur-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		B55FD91A29EF86C50084A457 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cakbur-ios/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Cakbur;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hnslmp.cakbur-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B55FD90529EF86C30084A457 /* Build configuration list for PBXProject "cakbur-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B55FD91629EF86C50084A457 /* Debug */,
+				B55FD91729EF86C50084A457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B55FD91829EF86C50084A457 /* Build configuration list for PBXNativeTarget "cakbur-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B55FD91929EF86C50084A457 /* Debug */,
+				B55FD91A29EF86C50084A457 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B55FD90229EF86C30084A457 /* Project object */;
+}
