@@ -1,1 +1,7 @@
-# cakbur
+# Cakbur the iPad Game
+
+Were you aware that Indonesia boasts more than 2,000 traditional games played across various ethnicities and regions? Unfortunately, as the world modernizes, many of these cherished pastimes have been forgotten and are no longer played. To address this issue, I have created an app called Cakbur the iPad Game, inspired by one of Indonesia's most popular traditional field games, also known as Gobak Sodor, Galah Asin, Galasin, Gobag, or Galah Panjang, depending on the region.
+
+The app allows players to take on the role of the attacking team, with the goal of reaching the finish line without getting hit by any of the guard teams. Additionally, the app features an attacker-switch mechanism that enables players to switch attackers and plan their strategies with greater creativity. Developed using Apple's SpriteKit framework. Combining SpriteKit with SwiftUI has proven to be a challenge, especially the part of passing data between SwiftUI View and SpriteKit SKScene but I'm very happy to be able to do it well. This experience has been a valuable journey in my ios development learning process.
+
+The game was designed with a retro arcade theme, the app aims to evoke childhood memories for Indonesians while remaining user-friendly for international audiences. As a child, I dreamt of promoting Indonesian culture globally, and this app represents one step toward realizing that dream.
