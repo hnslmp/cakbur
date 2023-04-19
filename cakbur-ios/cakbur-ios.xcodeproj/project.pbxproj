@@ -19,7 +19,7 @@
 		B55FD92B29EF86E70084A457 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD92229EF86E70084A457 /* GameView.swift */; };
 		B55FD92C29EF86E70084A457 /* MyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55FD92329EF86E70084A457 /* MyApp.swift */; };
 		B55FD92F29EF87160084A457 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B55FD92E29EF87160084A457 /* PressStart2P.ttf */; };
-		B55FD93429EF87AC0084A457 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B55FD93329EF87AC0084A457 /* backgroundMusic.mp3 */; };
+		B55FD93629EF8E940084A457 /* backgroundMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = B55FD93529EF8E940084A457 /* backgroundMusic.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		B55FD92229EF86E70084A457 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B55FD92329EF86E70084A457 /* MyApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyApp.swift; path = ../../cakbur.swiftpm/MyApp.swift; sourceTree = "<group>"; };
 		B55FD92E29EF87160084A457 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
-		B55FD93329EF87AC0084A457 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		B55FD93529EF8E940084A457 /* backgroundMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backgroundMusic.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				B55FD92E29EF87160084A457 /* PressStart2P.ttf */,
-				B55FD93329EF87AC0084A457 /* backgroundMusic.mp3 */,
+				B55FD93529EF8E940084A457 /* backgroundMusic.wav */,
 			);
 			name = Resources;
 			path = ../../cakbur.swiftpm/Resources;
@@ -186,8 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B55FD92F29EF87160084A457 /* PressStart2P.ttf in Resources */,
+				B55FD93629EF8E940084A457 /* backgroundMusic.wav in Resources */,
 				B55FD91529EF86C50084A457 /* Preview Assets.xcassets in Resources */,
-				B55FD93429EF87AC0084A457 /* backgroundMusic.mp3 in Resources */,
 				B55FD91229EF86C50084A457 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,14 +336,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"cakbur-ios/Preview Content\"";
+				DEVELOPMENT_TEAM = 5DUFZTPDQV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Cakbur;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -368,14 +370,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"cakbur-ios/Preview Content\"";
+				DEVELOPMENT_TEAM = 5DUFZTPDQV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Cakbur;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
